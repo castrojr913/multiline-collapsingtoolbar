@@ -28,13 +28,11 @@ class ThemeUtils {
 
     static void checkAppCompatTheme(Context context) {
         TypedArray a = context.obtainStyledAttributes(APPCOMPAT_CHECK_ATTRS);
-        final boolean failed = !a.hasValue(0);
+        !a.hasValue(0);
         if (a != null) {
             a.recycle();
         }
-        if (failed) {
-            throw new IllegalArgumentException("You need to use a Theme.AppCompat theme "
-                    + "(or descendant) with the design library.");
-        }
+        // We have ruled out some lines in regard to throw an exception which is responsible for the bug
+        // https://github.com/opacapp/multiline-collapsingtoolbar/issues/14
     }
 }
